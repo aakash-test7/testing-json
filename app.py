@@ -1,7 +1,7 @@
 import streamlit as st
 from google.cloud import storage
 from datetime import timedelta
-import json
+import os
 from google.oauth2 import service_account
 
 # Load the service account key from Streamlit Secrets
@@ -11,17 +11,22 @@ credentials = service_account.Credentials.from_service_account_info(secrets)
 def generate_signed_url(blob_name):
     """Generates a signed URL to access a file in GCS."""
     try:
-        bucket_name = os.getenv("GOOGLE_CLOUD_STORAGE_BUCKET", "chickpea-transcriptome")
-        
+        bucket_name = "chickpea-transcriptome"  # Replace with your bucket name
         client = storage.Client(credentials=credentials)
-
         bucket = client.get_bucket(bucket_name)
         blob = bucket.blob(blob_name)
         
+        # Check if the blob exists
+        if not blob.exists():
+            print(f"File {blob_name} does not exist in bucket {bucket_name}")  # Debugging
+            return None
+        
+        # Generate a signed URL that expires in 1 hour
         url = blob.generate_signed_url(expiration=timedelta(hours=1), method='GET')
+        print(f"Generated signed URL for {blob_name}: {url}")  # Debugging
         return url
     except Exception as e:
-        print(f"Error generating signed URL: {e}")
+        print(f"Error generating signed URL for {blob_name}: {e}")  # Debugging
         return None
 
 # --- Page Configurations ---
@@ -83,21 +88,49 @@ elif selected_page == "Meta Data":
     col1, col2 = st.columns([1, 2])
 
     with col1:
-        st.image(generate_signed_url("Images/1.png"), caption="Expression Data Heatmap", use_container_width=True)
+        image_url = generate_signed_url("Images/1.png")
+        if image_url:
+            st.image(image_url, caption="Expression Data Heatmap", use_container_width=True)
+        else:
+            st.warning("Image not found or unable to generate URL.")
         st.write("")
-        st.image(generate_signed_url("Images/2.png"), caption="SVM Kernel performance", use_container_width=True)
+        image_url = generate_signed_url("Images/2.png")
+        if image_url:
+            st.image(image_url, caption="SVM Kernel performance", use_container_width=True)
+        else:
+            st.warning("Image not found or unable to generate URL.")
         st.write("")
         st.write("")
-        st.image(generate_signed_url("Images/7.png"), caption="Tissue Specific Distribution plots", use_container_width=True)
+        image_url = generate_signed_url("Images/7.png")
+        if image_url:
+            st.image(image_url, caption="Tissue Specific Distribution plots", use_container_width=True)
+        else:
+            st.warning("Image not found or unable to generate URL.")
         st.write("")
         st.write("")
-        st.image(generate_signed_url("Images/5.png"), caption="WGCNA heatmaps", use_container_width=True)
+        image_url = generate_signed_url("Images/5.png")
+        if image_url:
+            st.image(image_url, caption="WGCNA heatmaps", use_container_width=True)
+        else:
+            st.warning("Image not found or unable to generate URL.")
 
     with col2:
-        st.image(generate_signed_url("Images/4.png"), caption="Functional Annotation [Root Tissues]", use_container_width=True)
+        image_url = generate_signed_url("Images/4.png")
+        if image_url:
+            st.image(image_url, caption="Functional Annotation [Root Tissues]", use_container_width=True)
+        else:
+            st.warning("Image not found or unable to generate URL.")
         st.write("")
-        st.image(generate_signed_url("Images/6.png"), caption="Comaprison of lncRNAs, TF and Non-TF", use_container_width=True)
-    st.image(generate_signed_url("Images/3.png"), caption="Performance charts for all files", use_container_width=True)
+        image_url = generate_signed_url("Images/6.png")
+        if image_url:
+            st.image(image_url, caption="Comaprison of lncRNAs, TF and Non-TF", use_container_width=True)
+        else:
+            st.warning("Image not found or unable to generate URL.")
+    image_url = generate_signed_url("Images/3.png")
+    if image_url:
+        st.image(image_url, caption="Performance charts for all files", use_container_width=True)
+    else:
+        st.warning("Image not found or unable to generate URL.")
 
 # --- Glossary Page ---
 elif selected_page == "Glossary":
@@ -137,10 +170,18 @@ elif selected_page == "Demonstration":
     st.write("This page helps you understand how to use the app through video turotials. Follow the steps below:")
     
     st.subheader("Navigation Tutorial")
-    st.video(generate_signed_url("Videos/navigation.mp4"), start_time=0)
+    video_url = generate_signed_url("Videos/navigation.mp4")
+    if video_url:
+        st.video(video_url, start_time=0)
+    else:
+        st.warning("Video not found or unable to generate URL.")
 
     st.subheader("Single Task Tutorial")
-    st.video(generate_signed_url("Videos/start_task1.mp4"), start_time=0)
+    video_url = generate_signed_url("Videos/start_task1.mp4")
+    if video_url:
+        st.video(video_url, start_time=0)
+    else:
+        st.warning("Video not found or unable to generate URL.")
     st.markdown("""
     1. Navigate to the **Start Task** page.
     2. Enter the 8-character code when prompted.
@@ -148,7 +189,11 @@ elif selected_page == "Demonstration":
     4. Wait for the task to complete and view the results.""")
 
     st.subheader("Multi Task Tutorial")
-    st.video(generate_signed_url("Videos/start_task2.mp4"), start_time=0)
+    video_url = generate_signed_url("Videos/start_task2.mp4")
+    if video_url:
+        st.video(video_url, start_time=0)
+    else:
+        st.warning("Video not found or unable to generate URL.")
     st.markdown("""
     1. Navigate to the **Start Task** page.
     2. Enter the 8-character code when prompted.
@@ -156,10 +201,18 @@ elif selected_page == "Demonstration":
     4. Wait for the task to complete and view the results.""")
 
     st.subheader("Glossary Tutorial")
-    st.video(generate_signed_url("Videos/glossary.mp4"), start_time=0)
+    video_url = generate_signed_url("Videos/glossary.mp4")
+    if video_url:
+        st.video(video_url, start_time=0)
+    else:
+        st.warning("Video not found or unable to generate URL.")
 
     st.subheader("About Tutorial")
-    st.video(generate_signed_url("Videos/contact us.mp4"), start_time=0)
+    video_url = generate_signed_url("Videos/contact us.mp4")
+    if video_url:
+        st.video(video_url, start_time=0)
+    else:
+        st.warning("Video not found or unable to generate URL.")
     
 # --- About Page ---
 elif selected_page == "About":
