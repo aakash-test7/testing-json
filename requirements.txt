@@ -6,5 +6,6 @@ openpyxl
 selenium
 beautifulsoup4
 requests
-Streamlit
+streamlit
 google-cloud-storage
+google-auth
