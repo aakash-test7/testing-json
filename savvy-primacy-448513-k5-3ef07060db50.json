@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "savvy-primacy-448513-k5",
+  "private_key_id": "3ef07060db50fc6c31f428489a7c37c147fc9533",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCU6PJFCb3/nsbM\n0R35SEOqj47EOfE9jHRd6X0gE+O6k8MkeNJpsL2IRY3Umjy/ebx+4n5FoEDwg9iJ\noiiKSnmV3RL2vsVP51kApdDeMbgPbuA0Q5SlapfxtSf5HwutmK/PDHgvCCeJaJ6h\nkk7oZqm4q0d2Mkr/MHpJGZ1q6daWjudcopL9McjV+8qqqRDN/T0IARoUEB8Ddecu\nC6aBk2zrCNq53zCwIGFAo9MUN9YPwlIxD2wRmkmndKKduOTsLkREjcnJkyWlAL96\ngelAFv6FRVTqRyFinwU5PAse34+rYDTaov+dX3BurzUPV7neZuPUZ8L9UB5A5+oW\ndtHtVhRpAgMBAAECggEAB1FFKoBWjluqkEEMdIYJETYZwWnJgYlH5J+HLw7bJ32A\nXufzCw+M2Mf2NsbXil88lI2jv98mocsQ1n6Z+GW9gNBK0MZCIvGO7Zm4YFrYHSYJ\nLXhOsyxASDfrPXI5nC+/H/EQbNs9OiLifLUYXJJC79i228eP6OdkcvgnxKu2CFLt\nM8tUanXLsGKCIjx5WUSXyeFJnhQsWOtd3nfNB+wMJ0Ca+ffi10iQD3g+wPeUI3Om\nbHMeSWs5d7cn3+AjjxorxzmKiacBGOdu51wNEEN/ix0xIbNMQwXsC0AWfj8ETYjS\ntBmXCnYZowSCXxlwNVRUmdvEYyP0pLcjYb96VXxCCQKBgQDNewWCekHneBPIE52J\n832L2JPMHg4i5eBTy5wGZaGIbjkUXdngcJxWU3RmeiWEP/tHyGLKGMDY/Ir59XRz\nF3rA2Sc7tU5GZJ1uzqiqAEnRcyratMpr/x334A3vJ/GKCIXs1e5klLg+NqBVJr70\n/GVpQFpb19pA1WcLP8oOLhni7QKBgQC5hVypB/zdf0bXU93kb0U44M33Kuzs9xf/\nREF7KwCNdgjKkQ1RRJxhF4ePzKQY5NHSUfn1WtxPkIMRn1LWcm6vEXieR6gOhByV\naFMm+sJC6/gJ0UttYmBqdUUF4RvYM/4nCSxjEXci3i6j2DydZPa2nltdI0lyXz1L\nq6RK2DAb7QKBgBNAP1fmFF6XRWMtU0klYtHDTLWG61QhrU6seMWwp92cVgSudkcs\nxbjgwLsJHpKxW91xzK+aehbaMjsQ4AQYYwvGTIKvjdHSg11qRysGM+RHofAzl/Ne\nR3R9rVCGsX55JfL2aAtMU6agf4z6wFE7hFTEDrMkGfKRC8JmC4wgjZRRAoGAchsh\nq+F62O1wr/4oa1k49Uvnws+HHBS6kMn1kIEZfOiNbbIbw9F0cY9cVMjkYV9T4o2D\nNTKmcNWMmCkrdTS6+TjAvHGMXylIv2iERGRVWX3zeG5fey7X6IKqanxTeP45ot7U\nizZx1WNcwm+8kH5J9Haf8UBD63HCrKksitA/ft0CgYEAnSboGcGzQ3gUQ4zlh6Fa\n6a2bCMmOLvIlFNjZYo4FcOUmnq2GAZJT0c8EJmeAybGUN41P1H6L3Q5kBGIV4gz/\nRcYnNyWox2/skgEowuqGErupRRevURGHXFVyTeAj2oPpe3qzZCMbzn6RmFv3nSRF\nDrMwcSeYVHWePVPPlL8ysuw=\n-----END PRIVATE KEY-----\n",
+  "client_email": "storage-object-viewer@savvy-primacy-448513-k5.iam.gserviceaccount.com",
+  "client_id": "102585240591810391680",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/storage-object-viewer%40savvy-primacy-448513-k5.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
