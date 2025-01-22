@@ -1,17 +1,19 @@
 import streamlit as st
 from google.cloud import storage
-import streamlit as st
 from datetime import timedelta
-import os
+import json
+from google.oauth2 import service_account
 
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "savvy-primacy-448513-k5-3ef07060db50.json"
+# Load the service account key from Streamlit Secrets
+secrets = st.secrets["gcp_service_account"]
+credentials = service_account.Credentials.from_service_account_info(secrets)
 
 def generate_signed_url(blob_name):
     """Generates a signed URL to access a file in GCS."""
     try:
         bucket_name = os.getenv("GOOGLE_CLOUD_STORAGE_BUCKET", "chickpea-transcriptome")
         
-        client = storage.Client()
+        client = storage.Client(credentials=credentials)
 
         bucket = client.get_bucket(bucket_name)
         blob = bucket.blob(blob_name)
@@ -19,7 +21,7 @@ def generate_signed_url(blob_name):
         url = blob.generate_signed_url(expiration=timedelta(hours=1), method='GET')
         return url
     except Exception as e:
-        print(f"Error generating signed URL")
+        print(f"Error generating signed URL: {e}")
         return None
 
 # --- Page Configurations ---
@@ -82,8 +84,6 @@ elif selected_page == "Meta Data":
 
     with col1:
         st.image(generate_signed_url("Images/1.png"), caption="Expression Data Heatmap", use_container_width=True)
-        st.write("")
-        #st.markdown("### Another Image Title")
         st.write("")
         st.image(generate_signed_url("Images/2.png"), caption="SVM Kernel performance", use_container_width=True)
         st.write("")
