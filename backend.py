@@ -12,17 +12,23 @@ import streamlit as st
 import os
 from google.cloud import storage
 import io
-import os
-os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "savvy-primacy-448513-k5-3ef07060db50.json"
+import json
+from google.oauth2 import service_account
+
+# Load the service account key from Streamlit Secrets
+secrets = st.secrets["gcp_service_account"]
+credentials = service_account.Credentials.from_service_account_info(secrets)
+
+# Initialize the Google Cloud Storage client
+client = storage.Client(credentials=credentials)
 
 bucket_name = os.getenv("GOOGLE_CLOUD_STORAGE_BUCKET", "chickpea-transcriptome")
-client = storage.Client()
 
 def read_excel_from_gcs(bucket_name, blob_name, header=0):
     bucket = client.get_bucket(bucket_name)
     blob = bucket.blob(blob_name)
     data = blob.download_as_bytes()
-    return pd.read_excel(io.BytesIO(data),header=header)
+    return pd.read_excel(io.BytesIO(data), header=header)
 
 df = read_excel_from_gcs(bucket_name, "Data/FPKM_Matrix(Ca).xlsx")
 miRNA_df = read_excel_from_gcs(bucket_name, "Data/8.xlsx")
