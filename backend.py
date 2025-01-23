@@ -362,7 +362,7 @@ def multi_transcriptid_info(mtid):
                 temp_result = temp_df[temp_df['Transcript id'] == tid]
                 temp_result = temp_result.drop(columns=['Genomic Coordinates', 'mRNA', 'lncRNA','Genomic Sequence','Transcript Sequence','Peptide Sequence','Cds Sequence','Promoter Sequence'])
                 result = pd.concat([result, temp_result], ignore_index=True)
-            sorted_result = result.sort_values(by="Target_Acc.")
+            sorted_result = result.sort_values(by="Transcript id")
             st.dataframe(sorted_result)
 
             st.subheader("RNA data")
@@ -389,7 +389,8 @@ def multi_transcriptid_info(mtid):
                 else:
                     st.write(f"No match found for Transcript id: {tid} in miRNA data\n")
             if not result.empty:
-                st.dataframe(result)
+                sorted_result = result.sort_values(by="Targrt_Acc.")
+                st.dataframe(sorted_result)
 
             st.subheader("Protein and PPI data")
             protein_matching_rows = protein_df[protein_df['Transcript id'].isin(mtid_list)]
