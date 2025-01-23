@@ -389,7 +389,7 @@ def multi_transcriptid_info(mtid):
                 else:
                     st.write(f"No match found for Transcript id: {tid} in miRNA data\n")
             if not result.empty:
-                sorted_result = result.sort_values(by="Targrt_Acc.")
+                sorted_result = result.sort_values(by="Target_Acc.")
                 st.dataframe(sorted_result)
 
             st.subheader("Protein and PPI data")
